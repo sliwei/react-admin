@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { hot } from "react-hot-loader/root"
+// import { hot } from "react-hot-loader/root"
 import { connect } from "dva"
 import { Button, Modal } from "antd"
 
@@ -44,4 +44,4 @@ export default connect(state => {
   return {
     loading: state.loading.effects["count/addAfter1Second"],
   }
-})(hot(Hello))
+})(Hello)

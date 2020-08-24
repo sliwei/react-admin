@@ -28,13 +28,16 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^6.4.9",
+    "@ant-design/pro-table": "^2.5.15",
     "@loadable/component": "^5.13.1",
     "antd": "^4.5.4",
+    "axios": "^0.20.0",
     "dva": "^2.4.1",
     "dva-loading": "^3.0.20",
+    "moment": "^2.27.0",
     "nprogress": "^0.2.0",
     "react": "^16.13.1",
-    "react-dom": "npm:@hot-loader/react-dom",
+    "react-dom": "react-dom",
     "react-transition-group": "^4.4.1"
   }
 }

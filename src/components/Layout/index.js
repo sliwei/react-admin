@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { hot } from "react-hot-loader/root"
+// import { hot } from "react-hot-loader/root"
 import { connect } from "dva"
 import {
   Button,
@@ -75,7 +75,6 @@ const content = (
   </Descriptions>
 )
 const App = props => {
-  console.log(props)
 
   const callback = e => {
     console.log(e)
@@ -136,7 +135,7 @@ const App = props => {
                           <List.Item>
                             <List.Item.Meta
                               avatar={
-                                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                                <Avatar src="https://picsum.photos/200" />
                               }
                               title={
                                 <a href="https://ant.design">{item.title}</a>
@@ -162,7 +161,7 @@ const App = props => {
                           <List.Item>
                             <List.Item.Meta
                               avatar={
-                                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                                <Avatar src="https://picsum.photos/200" />
                               }
                               title={
                                 <a href="https://ant.design">{item.title}</a>
@@ -188,7 +187,7 @@ const App = props => {
                           <List.Item>
                             <List.Item.Meta
                               avatar={
-                                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                                <Avatar src="https://picsum.photos/200" />
                               }
                               title={
                                 <a href="https://ant.design">{item.title}</a>
@@ -210,7 +209,7 @@ const App = props => {
               </Popover>
               <Dropdown overlay={menu}>
                 <div style={space}>
-                  <Avatar size="small" />
+                  <Avatar size="small" src="https://picsum.photos/200" />
                   <span style={{ marginLeft: 5, color: "#FFF" }}>Admin</span>
                 </div>
               </Dropdown>
@@ -270,4 +269,4 @@ const App = props => {
 
 export default connect(state => ({
   state: state,
-}))(hot(App))
+}))(App)

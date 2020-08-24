@@ -15,6 +15,17 @@ module.exports = {
     host: "0.0.0.0",
     port: "3000",
     // overlay: true,
+    proxy: {
+      '/up': {
+        target: 'https://coooe.oss-cn-beijing.aliyuncs.com/',
+        pathRewrite: {'^/up' : ''}
+      },
+      '/graphql': {
+        target: 'https://pvipcrm.meishubao.com',
+        changeOrigin: true,
+        // pathRewrite: {'^/up' : ''}
+      }
+    }
   },
   module: {
     rules: [

@@ -1,10 +1,11 @@
 import React from "react"
 import ProLayout, { PageContainer, DefaultFooter } from "@ant-design/pro-layout"
 import { Result, Button } from "antd"
-import { hot } from "react-hot-loader/root"
+// import { hot } from "react-hot-loader/root"
 import { connect } from "dva"
 import Hello from "../../components/Hello"
 import { Link } from "react-router-dom"
+
 const Index = props => {
   return (
     <PageContainer
@@ -25,7 +26,7 @@ const Index = props => {
         <Button key="2">操作</Button>,
         <Button key="1" type="primary">
           主操作
-        </Button>,
+        </Button>
       ]}
       // footer={[
       //   <Button key="3">重置</Button>,
@@ -39,7 +40,7 @@ const Index = props => {
         style={{
           // height: "100%",
           background: "#fff",
-          padding: 16,
+          padding: 16
         }}
       >
         <Link to="/">首页</Link>
@@ -59,5 +60,5 @@ const Index = props => {
 }
 
 export default connect(state => ({
-  state: state,
-}))(hot(Index))
+  state: state
+}))(Index)
