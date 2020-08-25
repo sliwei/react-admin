@@ -1,6 +1,7 @@
 const path = require("path")
 const htmlPlugin = require("html-webpack-plugin")
 const { getThemeVariables } = require("antd/dist/theme")
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -61,5 +62,6 @@ module.exports = {
       filename: "index.html",
       template: path.join(__dirname, "index.html"),
     }),
+    new ReactRefreshWebpackPlugin()
   ],
 }
