@@ -3,10 +3,11 @@ import ProLayout, { PageContainer, DefaultFooter } from "@ant-design/pro-layout"
 import { Result, Button } from "antd"
 // import { hot } from "react-hot-loader/root"
 import { connect } from "dva"
-import Hello from "../../components/Hello"
+import Hello from "@/components/Hello"
 import { Link } from "react-router-dom"
 
 const Index = props => {
+
   return (
     <PageContainer
       breadcrumb={false}
@@ -52,7 +53,7 @@ const Index = props => {
           extra={<Button type="primary">Back Home</Button>}
         />
 
-        <h1>Hello React! {props.state.count}</h1>
+        <h1>Hello React! {props.state.count.count}</h1>
         <div>{"sssssss"}</div>
       </div>
     </PageContainer>

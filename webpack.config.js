@@ -28,6 +28,12 @@ module.exports = {
       }
     }
   },
+  resolve: {
+    extensions: ['.js'],
+    alias: {
+      '@': path.resolve('src'),
+    },
+  },
   module: {
     rules: [
       {

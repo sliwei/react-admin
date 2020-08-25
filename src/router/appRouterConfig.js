@@ -7,15 +7,15 @@ export default [
     component: "views/home",
   },
   {
-    path: "/echarts",
-    component: "views/echarts",
+    path: "/list/echarts",
+    component: "views/list/echarts",
   },
   {
     path: "/list/index",
-    component: "views/list",
+    component: "views/list/index",
   },
   {
-    path: "/content",
-    component: "views/content",
+    path: "/list/content",
+    component: "views/list/content",
   },
 ]

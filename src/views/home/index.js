@@ -110,7 +110,7 @@ const Index = props => {
           extra={<Button type="primary">Back Home</Button>}
         />
 
-        <h1>Hello React! {props.state.count}</h1>
+        <h1>Hello React! {props.state.count.count}</h1>
         <div>{"sssssss"}</div>
 
         {/*<Hello />*/}

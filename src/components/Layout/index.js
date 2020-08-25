@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component, useState } from "react"
 // import { hot } from "react-hot-loader/root"
 import { connect } from "dva"
 import {
@@ -29,6 +29,7 @@ import { red } from "@ant-design/colors"
 import "./App.less"
 import AppRouter from "../../router/appRouter"
 const { TabPane } = Tabs
+import { Link } from "react-router-dom"
 
 const space = {
   height: "100%",
@@ -76,6 +77,8 @@ const content = (
 )
 const App = props => {
 
+  const [pathname, setPathname] = useState('/')
+
   const callback = e => {
     console.log(e)
   }
@@ -90,12 +93,16 @@ const App = props => {
       >
         <ProLayout
           location={{
-            pathname: "/articles/new",
+            pathname
           }}
           route={{
             routes: complexMenu,
           }}
           menuDataRender={e => e}
+          menuItemRender={(menuItemProps, defaultDom) => <Link to={menuItemProps.path}>{defaultDom}</Link>}
+          onPageChange={(e) => {
+            console.log(e)
+          }}
           disableContentMargin
           layout="top"
           rightContentRender={() => (
@@ -218,7 +225,7 @@ const App = props => {
         >
           <ProLayout
             location={{
-              pathname: "/home/overview",
+              pathname,
             }}
             style={{
               maxHeight: "calc(100vh - 48px)",
@@ -227,6 +234,18 @@ const App = props => {
               routes: complexMenu,
             }}
             menuDataRender={e => e}
+            menuItemRender={(menuItemProps, defaultDom) => {
+              return <Link to={menuItemProps.path}>{defaultDom}</Link>
+            }}
+            onPageChange={(e) => {
+              console.log(e)
+            }}
+            menuProps={{
+              onClick: e => {
+                console.log(e)
+                setPathname(e.key)
+              }
+            }}
             disableContentMargin
             contentStyle={{
               minHeight: "auto",
