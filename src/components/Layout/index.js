@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react"
+import React, { Component, useEffect, useState } from "react"
 // import { hot } from "react-hot-loader/root"
 import { connect } from "dva"
 import {
@@ -76,6 +76,14 @@ const content = (
   </Descriptions>
 )
 const App = props => {
+
+  useEffect(() => {
+    let indexLoading = document.querySelector('.indexLoading');
+    indexLoading.style.opacity = 0;
+    setTimeout(() => {
+      indexLoading.style.display = 'none';
+    }, 300);
+  }, [])
 
   const [pathname, setPathname] = useState('/')
 

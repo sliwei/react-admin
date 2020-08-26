@@ -2,6 +2,9 @@ const path = require("path")
 const htmlPlugin = require("html-webpack-plugin")
 const { getThemeVariables } = require("antd/dist/theme")
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -15,7 +18,25 @@ module.exports = {
     hot: true,
     host: "0.0.0.0",
     port: "3000",
-    // overlay: true,
+    overlay: true,
+    quiet: true,
+    // stats: {
+    //   colors: true,
+    //   hash: false,
+    //   version: false,
+    //   builtAt: false,
+    //   timings: true,
+    //   assets: false,
+    //   chunks: false,
+    //   modules: false,
+    //   reasons: false,
+    //   children: false,
+    //   source: false,
+    //   errors: false,
+    //   errorDetails: false,
+    //   warnings: false,
+    //   publicPath: false
+    // },
     proxy: {
       '/up': {
         target: 'https://coooe.oss-cn-beijing.aliyuncs.com/',
@@ -68,6 +89,15 @@ module.exports = {
       filename: "index.html",
       template: path.join(__dirname, "index.html"),
     }),
-    new ReactRefreshWebpackPlugin()
+    new FriendlyErrorsPlugin({
+      compilationSuccessInfo: {
+        messages: [`Your application is running here: http://localhost:3000`],
+      },
+      onErrors: undefined,
+      clearConsole: true,
+    }),
+    new ProgressBarPlugin()
+    // new HardSourceWebpackPlugin(),
+    // new ReactRefreshWebpackPlugin()
   ],
 }

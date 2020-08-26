@@ -62,7 +62,7 @@ const Index = props => {
         <Button key="3">操作</Button>,
         <Button key="2">操作</Button>,
         <Button key="1" type="primary">
-          主操作
+          主操作aAAsaaa
         </Button>,
       ]}
       // footer={[
