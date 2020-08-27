@@ -1,12 +1,13 @@
 const path = require("path")
 const htmlPlugin = require("html-webpack-plugin")
-const { getThemeVariables } = require("antd/dist/theme")
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin")
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin")
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin")
 const ProgressBarPlugin = require("progress-bar-webpack-plugin")
 const devMode = process.env.NODE_ENV === "development"
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const aliyunTheme = require("@ant-design/aliyun-theme")
+const { getThemeVariables } = require("antd/dist/theme")
 
 module.exports = {
   entry: {
@@ -95,10 +96,23 @@ module.exports = {
           { loader: "css-loader", options: { sourceMap: devMode } },
           { loader: "postcss-loader", options: { sourceMap: devMode ? "inline" : false } }, // 注意这里是 inline
           {
-            loader: "less-loader", options: {
-              sourceMap: devMode,
-              lessOptions: {
-                modifyVars: { "@primary-color": "#096dd9" },
+            loader: "less-loader",
+            // options: {
+            //   sourceMap: devMode,
+            //   lessOptions: {
+            //     modifyVars: aliyunTheme.default,
+            //     javascriptEnabled: true
+            //   }
+            // }
+            options: {
+              lessOptions: { // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
+                modifyVars: {
+                  ...aliyunTheme.default,
+                  ...getThemeVariables({
+                    dark: false, // 开启暗黑模式
+                    compact: true // 开启紧凑模式
+                  })
+                },
                 javascriptEnabled: true
               }
             }
