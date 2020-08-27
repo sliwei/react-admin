@@ -224,9 +224,6 @@ const Content = (props) => {
       breadcrumb={false}
       className="content_style"
     >
-
-      <Button onClick={getData}>getData</Button>
-
       <ProTable
         columns={[
           {

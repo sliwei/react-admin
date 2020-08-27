@@ -1,18 +1,20 @@
 const path = require("path")
 const htmlPlugin = require("html-webpack-plugin")
 const { getThemeVariables } = require("antd/dist/theme")
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin")
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin")
+const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin")
+const ProgressBarPlugin = require("progress-bar-webpack-plugin")
+const devMode = process.env.NODE_ENV === "development"
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
   entry: {
-    app: path.join(__dirname, "src/index.js"),
+    app: path.join(__dirname, "src/index.js")
   },
   output: {
     filename: "boundle.js",
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "dist")
   },
   devServer: {
     hot: true,
@@ -38,66 +40,87 @@ module.exports = {
     //   publicPath: false
     // },
     proxy: {
-      '/up': {
-        target: 'https://coooe.oss-cn-beijing.aliyuncs.com/',
-        pathRewrite: {'^/up' : ''}
+      "/up": {
+        target: "https://coooe.oss-cn-beijing.aliyuncs.com/",
+        pathRewrite: { "^/up": "" }
       },
-      '/graphql': {
-        target: 'https://pvipcrm.meishubao.com',
-        changeOrigin: true,
+      "/graphql": {
+        target: "https://pvipcrm.meishubao.com",
+        changeOrigin: true
         // pathRewrite: {'^/up' : ''}
       }
     }
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: [".js"],
     alias: {
-      '@': path.resolve('src'),
-    },
+      "@": path.resolve("src")
+    }
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: path.join(__dirname, "node_modules"),
-        use: ["babel-loader"],
+        use: ["babel-loader"]
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // only enable hot in development
+              hmr: devMode,
+              // if hmr does not work, this is a forceful method.
+              reloadAll: true
+            }
+          },
+          { loader: "css-loader", options: { sourceMap: devMode } },
+          { loader: "postcss-loader", options: { sourceMap: devMode ? "inline" : false } } // 注意这里是 inline
+        ]
       },
       {
-        test: /\.less$/,
+        test: /\.less$/i,
         use: [
-          "style-loader",
-          "css-loader",
           {
-            loader: "less-loader",
+            loader: MiniCssExtractPlugin.loader,
             options: {
+              // only enable hot in development
+              hmr: devMode,
+              // if hmr does not work, this is a forceful method.
+              reloadAll: true
+            }
+          },
+          { loader: "css-loader", options: { sourceMap: devMode } },
+          { loader: "postcss-loader", options: { sourceMap: devMode ? "inline" : false } }, // 注意这里是 inline
+          {
+            loader: "less-loader", options: {
+              sourceMap: devMode,
               lessOptions: {
                 modifyVars: { "@primary-color": "#096dd9" },
-                javascriptEnabled: true,
-              },
-            },
-          },
-        ],
-      },
-    ],
+                javascriptEnabled: true
+              }
+            }
+          }
+        ]
+      }
+    ]
   },
   plugins: [
     new htmlPlugin({
       filename: "index.html",
-      template: path.join(__dirname, "index.html"),
+      template: path.join(__dirname, "index.html")
     }),
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {
-        messages: [`Your application is running here: http://localhost:3000`],
+        messages: [`Your application is running here: http://localhost:3000`]
       },
       onErrors: undefined,
-      clearConsole: true,
+      clearConsole: true
     }),
-    new ProgressBarPlugin()
+    new ProgressBarPlugin(),
     // new HardSourceWebpackPlugin(),
-    // new ReactRefreshWebpackPlugin()
-  ],
+    new ReactRefreshWebpackPlugin()
+  ]
 }
