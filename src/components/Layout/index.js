@@ -111,6 +111,10 @@ const App = props => {
           onPageChange={(e) => {
             console.log(e)
           }}
+          settings={{
+            theme: 'dark'
+          }}
+          navTheme="dark"
           disableContentMargin
           layout="top"
           rightContentRender={() => (

@@ -108,10 +108,10 @@ module.exports = {
               lessOptions: { // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
                 modifyVars: {
                   ...aliyunTheme.default,
-                  ...getThemeVariables({
-                    dark: false, // 开启暗黑模式
-                    compact: true // 开启紧凑模式
-                  })
+                  // ...getThemeVariables({
+                  //   dark: false, // 开启暗黑模式
+                  //   compact: true // 开启紧凑模式
+                  // })
                 },
                 javascriptEnabled: true
               }
@@ -125,6 +125,13 @@ module.exports = {
     new htmlPlugin({
       filename: "index.html",
       template: path.join(__dirname, "index.html")
+    }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      chunkFilename: "[name].css",
+      ignoreOrder: true
     }),
     new FriendlyErrorsPlugin({
       compilationSuccessInfo: {

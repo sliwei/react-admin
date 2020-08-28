@@ -5,6 +5,7 @@ import { CSSTransition } from "react-transition-group"
 import "../assets/css/router.global.css"
 import routes from "./appRouterConfig"
 import loadable from "@loadable/component"
+import { DefaultFooter } from "@ant-design/pro-layout"
 
 /**
  * 子路由<动画>
@@ -32,6 +33,7 @@ export default () => {
           )}
         </Route>
       ))}
+
     </div>
   )
 }
