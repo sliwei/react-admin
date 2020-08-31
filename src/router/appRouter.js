@@ -3,9 +3,23 @@ import { Route } from "react-router-dom"
 import RouterGuard from "./routerGuard"
 import { CSSTransition } from "react-transition-group"
 import "../assets/css/router.global.css"
-import routes from "./appRouterConfig"
+// import routes from "./appRouterConfig"
+import routesList from "@/components/Layout/complexMenu"
 import loadable from "@loadable/component"
-import { DefaultFooter } from "@ant-design/pro-layout"
+
+const routes = []
+const loop = list => {
+  list.map(item => {
+    if (item.children && item.children.length) {
+      loop(item.children)
+    } else {
+      routes.push(item)
+    }
+  })
+}
+loop(routesList)
+
+console.log(routes)
 
 /**
  * 子路由<动画>
@@ -26,7 +40,7 @@ export default () => {
               unmountOnExit
             >
               <div className="router-transition">
-                <AsyncPage component={component} {...props} />
+                <AsyncPage {...props} component={component}/>
                 {/*<RouterGuard component={component} path={path} {...props}/>*/}
               </div>
             </CSSTransition>

@@ -7,7 +7,8 @@ import moment from "moment"
 import { connect } from "dva"
 // import { hot } from "react-hot-loader/root"
 
-const Content = (props) => {
+const Index = (props) => {
+  console.log(props)
 
   const [page, setPage] = useState(0)
   const [query, setquery] = useState()
@@ -221,6 +222,7 @@ const Content = (props) => {
 
   return <>
     <PageContainer
+      // title={false}
       breadcrumb={false}
       className="content_style"
     >
@@ -314,4 +316,4 @@ const Content = (props) => {
 
 export default connect((state) => ({
   list: state.count.list
-}))(Content)
+}))(Index)

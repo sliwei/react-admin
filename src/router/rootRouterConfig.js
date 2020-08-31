@@ -4,7 +4,7 @@
 export default [
   {
     path: "/login",
-    component: "views/login",
+    component: "views/common/login",
   },
   {
     path: "/",

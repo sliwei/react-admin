@@ -4,18 +4,22 @@
 export default [
   {
     path: "/",
-    component: "views/home",
+    component: "views/dashboard",
   },
   {
-    path: "/list/echarts",
-    component: "views/list/echarts",
-  },
-  {
-    path: "/list/index",
+    path: "/list/pro",
     component: "views/list/index",
   },
   {
-    path: "/list/content",
-    component: "views/list/content",
+    path: "/list/fixed",
+    component: "views/list/fixed",
+  },
+  {
+    path: "/403",
+    component: "views/common/403",
+  },
+  {
+    path: "/404",
+    component: "views/common/404",
   },
 ]

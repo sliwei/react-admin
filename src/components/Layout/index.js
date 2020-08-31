@@ -13,7 +13,7 @@ import {
   Popover,
   List,
   Result,
-  Descriptions,
+  Descriptions
 } from "antd"
 import ProLayout, { PageContainer, DefaultFooter } from "@ant-design/pro-layout"
 import complexMenu from "./complexMenu"
@@ -23,11 +23,14 @@ import {
   SearchOutlined,
   QuestionCircleOutlined,
   SettingOutlined,
-  LoginOutlined,
+  LoginOutlined
 } from "@ant-design/icons"
 import { red } from "@ant-design/colors"
 import "./App.less"
 import AppRouter from "../../router/appRouter"
+import Logo from '@/assets/img/logo.svg'
+// import { ReactComponent as Logo } from '@/assets/img/logo.svg';
+
 const { TabPane } = Tabs
 import { Link } from "react-router-dom"
 
@@ -36,30 +39,30 @@ const space = {
   display: "flex",
   alignItems: "center",
   margin: "0 12px",
-  cursor: "pointer",
+  cursor: "pointer"
 }
 
 const menu = (
   <Menu>
-    <Menu.Item icon={<UserOutlined />}>个人中心</Menu.Item>
-    <Menu.Item icon={<SettingOutlined />}>个人设置</Menu.Item>
-    <Menu.Divider />
-    <Menu.Item icon={<LoginOutlined />}>退出登录</Menu.Item>
+    <Menu.Item icon={<UserOutlined/>}>个人中心</Menu.Item>
+    <Menu.Item icon={<SettingOutlined/>}>个人设置</Menu.Item>
+    <Menu.Divider/>
+    <Menu.Item icon={<LoginOutlined/>}>退出登录</Menu.Item>
   </Menu>
 )
 const data = [
   {
-    title: "新订单1",
+    title: "新订单1"
   },
   {
-    title: "新订单2",
+    title: "新订单2"
   },
   {
-    title: "新订单3",
+    title: "新订单3"
   },
   {
-    title: "新订单4",
-  },
+    title: "新订单4"
+  }
 ]
 
 const content = (
@@ -77,15 +80,8 @@ const content = (
 )
 const App = props => {
 
-  useEffect(() => {
-    let indexLoading = document.querySelector('.indexLoading');
-    indexLoading.style.opacity = 0;
-    setTimeout(() => {
-      indexLoading.style.display = 'none';
-    }, 300);
-  }, [])
-
-  const [pathname, setPathname] = useState('/')
+  const [pathname, setPathname] = useState("/")
+  const [bread, setBread] = useState([])
 
   const callback = e => {
     console.log(e)
@@ -96,15 +92,23 @@ const App = props => {
       <div
         style={{
           height: "100vh",
-          overflow: "auto",
+          overflow: "auto"
         }}
       >
+
         <ProLayout
+          logo={<img width={32} src={Logo} alt=""/>}
+          title="Ant Admin"
           location={{
             pathname
           }}
           route={{
-            routes: complexMenu,
+            routes: complexMenu
+          }}
+          breadcrumbRender={route => {
+            console.log(route)
+            // route
+            // setBread([{}])
           }}
           menuDataRender={e => e}
           menuItemRender={(menuItemProps, defaultDom) => <Link to={menuItemProps.path}>{defaultDom}</Link>}
@@ -112,7 +116,7 @@ const App = props => {
             console.log(e)
           }}
           settings={{
-            theme: 'dark'
+            theme: "dark"
           }}
           navTheme="dark"
           disableContentMargin
@@ -122,10 +126,10 @@ const App = props => {
               style={{ height: "100%", display: "flex", alignItems: "center" }}
             >
               <div style={space}>
-                <SearchOutlined style={{ fontSize: 20 }} />
+                <SearchOutlined style={{ fontSize: 20 }}/>
               </div>
               <div style={space}>
-                <QuestionCircleOutlined style={{ fontSize: 20 }} />
+                <QuestionCircleOutlined style={{ fontSize: 20 }}/>
               </div>
               <Popover
                 placement="bottomRight"
@@ -154,7 +158,7 @@ const App = props => {
                           <List.Item>
                             <List.Item.Meta
                               avatar={
-                                <Avatar src="https://picsum.photos/200" />
+                                <Avatar src="https://picsum.photos/200"/>
                               }
                               title={
                                 <a href="https://ant.design">{item.title}</a>
@@ -180,7 +184,7 @@ const App = props => {
                           <List.Item>
                             <List.Item.Meta
                               avatar={
-                                <Avatar src="https://picsum.photos/200" />
+                                <Avatar src="https://picsum.photos/200"/>
                               }
                               title={
                                 <a href="https://ant.design">{item.title}</a>
@@ -206,7 +210,7 @@ const App = props => {
                           <List.Item>
                             <List.Item.Meta
                               avatar={
-                                <Avatar src="https://picsum.photos/200" />
+                                <Avatar src="https://picsum.photos/200"/>
                               }
                               title={
                                 <a href="https://ant.design">{item.title}</a>
@@ -222,13 +226,13 @@ const App = props => {
               >
                 <div style={space}>
                   <Badge dot>
-                    <BellOutlined style={{ fontSize: 20 }} />
+                    <BellOutlined style={{ fontSize: 20 }}/>
                   </Badge>
                 </div>
               </Popover>
               <Dropdown overlay={menu}>
                 <div style={space}>
-                  <Avatar size="small" src="https://picsum.photos/200" />
+                  <Avatar size="small" src="https://picsum.photos/200"/>
                   <span style={{ marginLeft: 5, color: "#FFF" }}>Admin</span>
                 </div>
               </Dropdown>
@@ -237,60 +241,65 @@ const App = props => {
         >
           <ProLayout
             location={{
-              pathname,
+              pathname
             }}
             style={{
-              maxHeight: "calc(100vh - 48px)",
+              maxHeight: "calc(100vh - 48px)"
             }}
             route={{
-              routes: complexMenu,
+              routes: complexMenu
+            }}
+            breadcrumbRender={route => {
+              console.log(route)
+              // route
+              // setBread([{}])
+              return []
             }}
             menuDataRender={e => e}
             menuItemRender={(menuItemProps, defaultDom) => {
               return <Link to={menuItemProps.path}>{defaultDom}</Link>
             }}
             onPageChange={(e) => {
-              console.log(e)
+              // console.log(e)
             }}
             menuProps={{
               onClick: e => {
-                console.log(e)
                 setPathname(e.key)
               }
             }}
             disableContentMargin
             contentStyle={{
-              minHeight: "auto",
+              minHeight: "auto"
             }}
             navTheme="light"
             menuHeaderRender={false}
             // headerRender={false} // 隐藏头
-            headerContentRender={() => (
+            headerContentRender={(o) => {
               // 显示头
-              <Breadcrumb
+              return <Breadcrumb
                 style={{
                   height: "100%",
                   display: "flex",
-                  alignItems: "center",
+                  alignItems: "center"
                 }}
               >
                 <Breadcrumb.Item>User</Breadcrumb.Item>
                 <Breadcrumb.Item>Bill</Breadcrumb.Item>
               </Breadcrumb>
-            )}
+            }}
             siderWidth={180}
             footerRender={() => (
               <DefaultFooter
                 className="app_footer"
                 style={{
-                  margin: "10px 0",
+                  margin: "10px 0"
                 }}
                 links={null}
                 copyright="antd Admin"
               />
             )}
           >
-            <AppRouter />
+            <AppRouter/>
           </ProLayout>
         </ProLayout>
       </div>
@@ -299,5 +308,5 @@ const App = props => {
 }
 
 export default connect(state => ({
-  state: state,
+  state: state
 }))(App)

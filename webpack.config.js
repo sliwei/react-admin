@@ -1,7 +1,6 @@
 const path = require("path")
 const htmlPlugin = require("html-webpack-plugin")
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin")
-const HardSourceWebpackPlugin = require("hard-source-webpack-plugin")
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin")
 const ProgressBarPlugin = require("progress-bar-webpack-plugin")
 const devMode = process.env.NODE_ENV === "development"
@@ -107,7 +106,10 @@ module.exports = {
             options: {
               lessOptions: { // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
                 modifyVars: {
-                  ...aliyunTheme.default,
+                  // ...aliyunTheme.default,
+                  '@primary-color': '#fa541c',
+                  '@font-size-sm': '12px',
+                  '@font-size-base': '12px',
                   // ...getThemeVariables({
                   //   dark: false, // 开启暗黑模式
                   //   compact: true // 开启紧凑模式
@@ -118,7 +120,22 @@ module.exports = {
             }
           }
         ]
-      }
+      },
+      {
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[hash]-[name].[ext]',
+            },
+          },
+        ],
+      },
+      // {
+      //   test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+      //   use: ["file-loader"]
+      // }
     ]
   },
   plugins: [

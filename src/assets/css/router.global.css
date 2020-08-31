@@ -3,9 +3,9 @@
 }
 
 .router-transition {
-  /*position: absolute;*/
-  /*left: 0;*/
-  /*right: 0;*/
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 
 .router-transition-enter {
