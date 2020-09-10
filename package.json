@@ -4,8 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env webpack-dev-server --inline --progress --config ./build/webpack.config.js",
-    "start1": "cross-env webpack-dev-server",
+    "start": "cross-env webpack-dev-server",
     "build:dev": "cross-env webpack --mode=development --config ./build/webpack.config.js",
     "build": "cross-env webpack --mode=production --config ./webpack.config.build.js"
   },
@@ -51,6 +50,7 @@
     "axios": "^0.20.0",
     "dva": "^2.4.1",
     "dva-loading": "^3.0.20",
+    "json-beautify": "^1.1.1",
     "moment": "^2.27.0",
     "nprogress": "^0.2.0",
     "react": "^16.13.1",

@@ -48,6 +48,11 @@ module.exports = {
         target: "https://pvipcrm.meishubao.com",
         changeOrigin: true
         // pathRewrite: {'^/up' : ''}
+      },
+      "/api": {
+        target: "http://127.0.0.1:9003",
+        changeOrigin: true,
+        pathRewrite: {'^/api' : ''}
       }
     }
   },
