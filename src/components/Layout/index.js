@@ -103,9 +103,9 @@ const App = props => {
           location={{
             pathname
           }}
-          // route={{
-          //   routes: complexMenu
-          // }}
+          route={{
+            routes: []
+          }}
           breadcrumbRender={route => {
             console.log(route)
             // route
@@ -284,8 +284,8 @@ const App = props => {
                   alignItems: "center"
                 }}
               >
-                {bread.map(item => (
-                  <Breadcrumb.Item><Link to={item.path}>{item.breadcrumbName}</Link></Breadcrumb.Item>
+                {bread.map((item, i) => (
+                  <Breadcrumb.Item key={i}><Link to={item.path}>{item.breadcrumbName}</Link></Breadcrumb.Item>
                 ))}
               </Breadcrumb>
             }}
