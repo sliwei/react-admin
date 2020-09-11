@@ -1,5 +1,6 @@
 import {
   IdcardOutlined,
+  NodeExpandOutlined,
   DashboardOutlined,
   SettingOutlined,
   AuditOutlined,
@@ -15,6 +16,12 @@ export default [
     name: "工作台",
     icon: <DashboardOutlined/>,
     component: 'views/dashboard'
+  },
+  {
+    path: "/api",
+    name: "接口",
+    icon: <NodeExpandOutlined />,
+    component: 'views/api'
   },
   {
     path: "/403",

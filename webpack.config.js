@@ -19,7 +19,7 @@ module.exports = {
   devServer: {
     hot: true,
     host: "0.0.0.0",
-    port: "3000",
+    port: "3001",
     overlay: true,
     quiet: true,
     // stats: {
@@ -49,10 +49,35 @@ module.exports = {
         changeOrigin: true
         // pathRewrite: {'^/up' : ''}
       },
-      "/api": {
+      "/dapi": {
         target: "http://127.0.0.1:9003",
         changeOrigin: true,
-        pathRewrite: {'^/api' : ''}
+        pathRewrite: {'^/dapi' : ''}
+      },
+      "/tapi": {
+        target: "http://tgql.meishubao.com",
+        changeOrigin: true,
+        pathRewrite: {'^/tapi' : ''}
+      },
+      "/dgql": {
+        target: "http://127.0.0.1:9003/boss",
+        changeOrigin: true,
+        pathRewrite: {'^/dgql' : ''}
+      },
+      "/tgql": {
+        target: "http://tgql.meishubao.com/boss",
+        changeOrigin: true,
+        pathRewrite: {'^/tgql' : ''}
+      },
+      "/pgql": {
+        target: "http://pgql.meishubao.com/boss",
+        changeOrigin: true,
+        pathRewrite: {'^/pgql' : ''}
+      },
+      "/gql": {
+        target: "http://gql.meishubao.com/boss",
+        changeOrigin: true,
+        pathRewrite: {'^/gql' : ''}
       }
     }
   },
