@@ -13,14 +13,14 @@ const { Panel } = Collapse
 
 const treeData = [
   {
-    title: "老师TMS",
+    title: "教务EAS",
     key: "0-0",
     selectable: false,
     children: [
       {
         icon: <NodeExpandOutlined/>,
         key: "0-0-0", isLeaf: true,
-        title: "统计",
+        title: "学员列表",
         url: "/tapi/teacherLeave/statistics",
         method: "post",
         data: {
@@ -44,6 +44,145 @@ const treeData = [
       {
         icon: <NodeExpandOutlined/>,
         key: "0-0-1", isLeaf: true,
+        title: "学员详情",
+        url: "/tapi/teacherLeave/statistics",
+        method: "post",
+        data: {
+          "teacher_id": 410,
+          "ctime": { "gte": 0, "lte": 1908242726 },
+          "leave_date": { "gte": "2019-06-24T16:00:00.000Z", "lte": "2019-06-24T16:00:00.000Z" }
+        },
+        headers: {
+          authorization: "a"
+        },
+        note: {
+          "teacher_id": "老师ID",
+          "ctime": { "gte": "申请开始时间", "lte": "申请结束时间" },
+          "leave_date": { "gte": "上课开始时间", "lte": "上课结束时间" }
+        },
+        returnNote: {
+          "leave": "总数",
+          "affectLeave": "课时"
+        }
+      }
+    ]
+  },
+  {
+    title: "外呼",
+    key: "0-1",
+    selectable: false,
+    children: [
+      {
+        icon: <NodeExpandOutlined/>,
+        key: "0-1-0", isLeaf: true,
+        title: "坐席列表",
+        url: "/tapi/teacherLeave/statistics",
+        method: "post",
+        data: {
+          "teacher_id": 410,
+          "ctime": { "gte": 0, "lte": 1908242726 },
+          "leave_date": { "gte": "2019-06-24T16:00:00.000Z", "lte": "2019-06-24T16:00:00.000Z" }
+        },
+        headers: {
+          authorization: "a"
+        },
+        note: {
+          "teacher_id": "老师ID",
+          "ctime": { "gte": "申请开始时间", "lte": "申请结束时间" },
+          "leave_date": { "gte": "上课开始时间", "lte": "上课结束时间" }
+        },
+        returnNote: {
+          "leave": "总数",
+          "affectLeave": "课时"
+        }
+      },
+      {
+        icon: <NodeExpandOutlined/>,
+        key: "0-1-1", isLeaf: true,
+        title: "坐席统计",
+        url: "/tapi/teacherLeave/statistics",
+        method: "post",
+        data: {
+          "teacher_id": 410,
+          "ctime": { "gte": 0, "lte": 1908242726 },
+          "leave_date": { "gte": "2019-06-24T16:00:00.000Z", "lte": "2019-06-24T16:00:00.000Z" }
+        },
+        headers: {
+          authorization: "a"
+        },
+        note: {
+          "teacher_id": "老师ID",
+          "ctime": { "gte": "申请开始时间", "lte": "申请结束时间" },
+          "leave_date": { "gte": "上课开始时间", "lte": "上课结束时间" }
+        },
+        returnNote: {
+          "leave": "总数",
+          "affectLeave": "课时"
+        }
+      }
+    ]
+  },
+  {
+    title: "老师TMS",
+    key: "0-2",
+    selectable: false,
+    children: [
+      {
+        icon: <NodeExpandOutlined/>,
+        key: "0-2-0", isLeaf: true,
+        title: "老师请假统计",
+        url: "/tapi/teacherLeave/statistics",
+        method: "post",
+        data: {
+          "teacher_id": 410,
+          "ctime": { "gte": 0, "lte": 1908242726 },
+          "leave_date": { "gte": "2019-06-24T16:00:00.000Z", "lte": "2019-06-24T16:00:00.000Z" }
+        },
+        headers: {
+          authorization: "a"
+        },
+        note: {
+          "teacher_id": "老师ID",
+          "ctime": { "gte": "申请开始时间", "lte": "申请结束时间" },
+          "leave_date": { "gte": "上课开始时间", "lte": "上课结束时间" }
+        },
+        returnNote: {
+          "leave": "总数",
+          "affectLeave": "课时"
+        }
+      }
+    ]
+  },
+  {
+    title: "自主约课",
+    key: "0-3",
+    selectable: false,
+    children: [
+      {
+        icon: <NodeExpandOutlined/>,
+        key: "0-3-0", isLeaf: true,
+        title: "获取处理人",
+        url: "/tapi/applyClass/getHandle",
+        method: "post",
+        data: {
+          all: 1,
+          ids: []
+        },
+        headers: {
+          authorization: "a"
+        },
+        note: {
+          "all": "是否查询全部处理人",
+          "ids": "处理人ID"
+        },
+        returnNote: {
+          "leave": "总数",
+          "affectLeave": "课时"
+        }
+      },
+      {
+        icon: <NodeExpandOutlined/>,
+        key: "0-3-1", isLeaf: true,
         title: "自主约课统计",
         url: "/dgql",
         method: "post",
@@ -73,14 +212,14 @@ const treeData = [
     ]
   },
   {
-    title: "自主约课",
-    key: "0-1",
+    title: "9月二期",
+    key: "0-4",
     selectable: false,
     children: [
       {
         icon: <NodeExpandOutlined/>,
-        key: "0-1-0", isLeaf: true,
-        title: "USER",
+        key: "0-4-0", isLeaf: true,
+        title: "全局搜索",
         url: "/tapi/applyClass/getHandle",
         method: "post",
         data: {
@@ -98,9 +237,38 @@ const treeData = [
           "leave": "总数",
           "affectLeave": "课时"
         }
+      },
+      {
+        icon: <NodeExpandOutlined/>,
+        key: "0-4-1", isLeaf: true,
+        title: "消息列表",
+        url: "/dgql",
+        method: "post",
+        data: {
+          "query": `{
+   UApplyClassCustomTotal(query: "{\\"bool\\":{\\"must\\":[]}}") {
+    waitClass
+    fixClass
+    overdueClass
+    cancelClass
+  }
+}`,
+        },
+        headers: {
+          authorization: "a"
+        },
+        note: {
+          "query": "graphql 语句",
+        },
+        returnNote: {
+          "waitClass": "老师ID",
+          "fixClass": "老师ID",
+          "overdueClass": "老师ID",
+          "cancelClass": "老师ID",
+        }
       }
     ]
-  }
+  },
 ]
 
 const Index = () => {

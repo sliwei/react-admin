@@ -79,8 +79,9 @@ const content = (
   </Descriptions>
 )
 const App = props => {
+  console.log(props)
 
-  const [pathname, setPathname] = useState("/")
+  const [pathname, setPathname] = useState(props.location.pathname)
   const [bread, setBread] = useState([])
 
   const callback = e => {
@@ -102,9 +103,9 @@ const App = props => {
           location={{
             pathname
           }}
-          route={{
-            routes: complexMenu
-          }}
+          // route={{
+          //   routes: complexMenu
+          // }}
           breadcrumbRender={route => {
             console.log(route)
             // route
@@ -251,9 +252,9 @@ const App = props => {
             }}
             breadcrumbRender={route => {
               console.log(route)
-              // route
-              // setBread([{}])
-              return []
+              if (JSON.stringify(route) !== JSON.stringify(bread)) {
+                setBread(route)
+              }
             }}
             menuDataRender={e => e}
             menuItemRender={(menuItemProps, defaultDom) => {
@@ -283,8 +284,9 @@ const App = props => {
                   alignItems: "center"
                 }}
               >
-                <Breadcrumb.Item>User</Breadcrumb.Item>
-                <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                {bread.map(item => (
+                  <Breadcrumb.Item><Link to={item.path}>{item.breadcrumbName}</Link></Breadcrumb.Item>
+                ))}
               </Breadcrumb>
             }}
             siderWidth={180}
