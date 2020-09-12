@@ -419,8 +419,8 @@ const Index = () => {
 
   return (
     <>
-      <div style={{ margin: 16 }}>
-        <Row style={{ padding: 16, background: "#fff" }}>
+      <div style={{ padding: '16px 16px 0 16px', height: '100%' }}>
+        <Row style={{ padding: 16, background: "#fff", height: '100%' }}>
           <Col style={{ width: 180, marginRight: 16 }}>
             <DirectoryTree
               defaultExpandAll

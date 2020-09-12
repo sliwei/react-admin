@@ -99,7 +99,7 @@ const App = props => {
 
         <ProLayout
           logo={<img width={32} src={Logo} alt=""/>}
-          title="Ant Admin"
+          title="Halo Admin"
           location={{
             pathname
           }}
@@ -297,7 +297,7 @@ const App = props => {
                   margin: "10px 0"
                 }}
                 links={null}
-                copyright="antd Admin"
+                copyright="Halo Admin"
               />
             )}
           >
