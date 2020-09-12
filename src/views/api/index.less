@@ -1,0 +1,21 @@
+@font-face{
+  font-family: 'Menlo-Regular';
+  /*src : url('../assets/font/AGaramondPro-Regular.otf');*/
+  src : url('@/assets/font/Menlo-Regular.ttf');
+}
+.tabs {
+  div[class='ant-tabs-nav'] {
+    margin: 0;
+  }
+  div[class='ant-tabs-nav-list'] {
+    .ant-tabs-tab {
+      padding: 6px 0;
+    }
+  }
+}
+.code {
+  div[class*='CodeMirror'] {
+    border-radius: 0;
+    font-family: 'Menlo-Regular', 'source-code-pro', Menlo, 'Courier New', Consolas, monospace;
+  }
+}

@@ -75,18 +75,32 @@ module.exports = {
             options: {
               lessOptions: { // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
                 modifyVars: {
-                  ...aliyunTheme.default,
-                  ...getThemeVariables({
-                    dark: false, // 开启暗黑模式
-                    compact: true // 开启紧凑模式
-                  })
+                  // ...aliyunTheme.default,
+                  '@primary-color': '#fa541c',
+                  '@font-size-sm': '12px',
+                  '@font-size-base': '12px',
+                  // ...getThemeVariables({
+                  //   dark: false, // 开启暗黑模式
+                  //   compact: true // 开启紧凑模式
+                  // })
                 },
                 javascriptEnabled: true
               }
             }
           }
         ]
-      }
+      },
+      {
+        test: /\.(png|jp(e*)g|svg|gif|ttf|eot|woff(2)?)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[hash]-[name].[ext]',
+            },
+          },
+        ],
+      },
     ]
   },
   plugins: [

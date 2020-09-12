@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Button, Input, Row, Col, Tree, message, Collapse, Spin } from "antd"
+import { Button, Input, Row, Col, Tree, message, Collapse, Spin, Tabs } from "antd"
 import axios from "axios"
 import beautify from "json-beautify"
 import { NodeExpandOutlined } from "@ant-design/icons"
@@ -10,20 +10,23 @@ import "codemirror/addon/edit/matchbrackets"
 import "codemirror/keymap/sublime"
 import "codemirror/lib/codemirror.css"
 import "codemirror/theme/monokai.css"
-// import keycode from 'keycode'
+import key from "keymaster"
+import "./index.less"
 
 const { TextArea } = Input
 const { DirectoryTree } = Tree
 const { Panel } = Collapse
+const { TabPane } = Tabs
 
-const treeData = [
+const treeData = window.apiTreeData || []
+const treeDatas = [
   {
     title: "教务EAS",
     key: "0-0",
     selectable: false,
     children: [
       {
-        icon: <NodeExpandOutlined />,
+        icon: <NodeExpandOutlined/>,
         key: "0-0-0", isLeaf: true,
         title: "学员列表",
         url: "/tapi/teacherLeave/statistics",
@@ -42,7 +45,7 @@ const treeData = [
         }
       },
       {
-        icon: <NodeExpandOutlined />,
+        icon: <NodeExpandOutlined/>,
         key: "0-0-1", isLeaf: true,
         title: "学员列表",
         url: "/tapi/teacherLeave/statistics2",
@@ -68,7 +71,7 @@ const treeData = [
     selectable: false,
     children: [
       {
-        icon: <NodeExpandOutlined />,
+        icon: <NodeExpandOutlined/>,
         key: "0-1-0", isLeaf: true,
         title: "坐席列表",
         url: "/tapi/teacherLeave/statistics",
@@ -92,7 +95,7 @@ const treeData = [
         }
       },
       {
-        icon: <NodeExpandOutlined />,
+        icon: <NodeExpandOutlined/>,
         key: "0-1-1", isLeaf: true,
         title: "坐席统计",
         url: "/tapi/teacherLeave/statistics",
@@ -123,7 +126,7 @@ const treeData = [
     selectable: false,
     children: [
       {
-        icon: <NodeExpandOutlined />,
+        icon: <NodeExpandOutlined/>,
         key: "0-2-0", isLeaf: true,
         title: "老师请假统计",
         url: "/tapi/teacherLeave/statistics",
@@ -154,7 +157,7 @@ const treeData = [
     selectable: false,
     children: [
       {
-        icon: <NodeExpandOutlined />,
+        icon: <NodeExpandOutlined/>,
         key: "0-3-0", isLeaf: true,
         title: "获取处理人",
         url: "/tapi/applyClass/getHandle",
@@ -176,7 +179,7 @@ const treeData = [
         }
       },
       {
-        icon: <NodeExpandOutlined />,
+        icon: <NodeExpandOutlined/>,
         key: "0-3-1", isLeaf: true,
         title: "自主约课统计",
         url: "/dgql",
@@ -212,7 +215,7 @@ const treeData = [
     selectable: false,
     children: [
       {
-        icon: <NodeExpandOutlined />,
+        icon: <NodeExpandOutlined/>,
         key: "0-4-0", isLeaf: true,
         title: "全局搜索",
         url: "/tapi/applyClass/getHandle",
@@ -234,7 +237,7 @@ const treeData = [
         }
       },
       {
-        icon: <NodeExpandOutlined />,
+        icon: <NodeExpandOutlined/>,
         key: "0-4-1", isLeaf: true,
         title: "消息列表",
         url: "/dgql",
@@ -275,6 +278,9 @@ const options = {
 
 const Index = () => {
   const [send, setSend] = useState(0)
+  const [p1, setP1] = useState(true)
+  const [p2, setP2] = useState(true)
+  const [backups, setBackups] = useState({})
   const [loading, setLoading] = useState(false)
   const [changeLoading, setChangeLoading] = useState(false)
   const [data, setData] = useState({
@@ -292,27 +298,29 @@ const Index = () => {
       } else {
         try {
           setLoading(true)
-          axios({
-            url: data.url,
-            method: data.method || "get",
-            data: data.data ? JSON.parse(data.data) : "",
-            headers: data.headers ? JSON.parse(data.headers) : ""
-          }).then(res => {
-            message.success(res.data.status || "请求成功~")
-            setData({
-              ...data,
-              res: beautify(res.data.payload || res.data.data, null, 2, 80),
-              more: beautify(res, null, 2, 80)
+          setTimeout(() => {
+            axios({
+              url: data.url,
+              method: data.method || "get",
+              data: data.data ? JSON.parse(data.data) : "",
+              headers: data.headers ? JSON.parse(data.headers) : ""
+            }).then(res => {
+              message.success(res.data.status || "请求成功~")
+              setData({
+                ...data,
+                res: beautify(res.data.payload || res.data.data, null, 2, 80),
+                more: beautify(res, null, 2, 80)
+              })
+            }).catch(e => {
+              message.error("请求异常~")
+              setData({
+                ...data,
+                res: beautify(e, null, 2, 80)
+              })
+            }).finally(() => {
+              setLoading(false)
             })
-          }).catch(e => {
-            message.error("请求异常~")
-            setData({
-              ...data,
-              res: beautify(e, null, 2, 80)
-            })
-          }).finally(() => {
-            setLoading(false)
-          })
+          }, 200)
         } catch (e) {
           message.error(e)
         }
@@ -320,16 +328,21 @@ const Index = () => {
     }
   }, [send])
 
+  const reSet = () => onSelect(null, null, backups)
+
   useEffect(() => {
     const enterSend = (e) => {
       if (e.keyCode === 13) {
-        console.log("AAAA")
         setSend(sends => sends + 1)
       }
     }
-    window.addEventListener("keyup", enterSend, true)
+    key("⌘+enter, ctrl+enter", enterSend)
+    key("alt+r, alt+r", reSet)
+    // window.addEventListener("keyup", enterSend, true)
     return () => {
-      window.removeEventListener("keyup", enterSend, false)
+      key.unbind("⌘+enter, ctrl+enter")
+      key.unbind("alt+r, alt+r")
+      // window.removeEventListener("keyup", enterSend, false)
     }
   }, [])
 
@@ -351,10 +364,12 @@ const Index = () => {
   //   }
   // }
 
-  const onSelect = (keys, event) => {
+  const onSelect = (keys, event, reset) => {
     setChangeLoading(true)
     setTimeout(() => {
-      let newData = event.node
+      let newData = reset || event.node
+      // 备份
+      setBackups(newData)
       setData({
         ...newData,
         res: "",
@@ -376,11 +391,17 @@ const Index = () => {
       } catch (e) {
         message.error(`解析字符串为JSON失败，请检查${type}格式～`)
       }
-      setData(datas => ({
-        ...datas,
-        [type]: val
-      }))
+      setData(datas => {
+        return {
+          ...datas,
+          [type]: val
+        }
+      })
     }, 100)
+  }
+
+  const createIo = () => {
+
   }
 
   // const CodeMirrorProps = (type) => ({
@@ -390,6 +411,11 @@ const Index = () => {
   //   onChanges: (instance) => CodeMirrorChange(instance, type),
   //   onBlur: (instance) => CodeMirrorBlur(instance, type)
   // })
+
+  const hideStyle = {
+    position: "fixed",
+    right: "9999999px"
+  }
 
   return (
     <>
@@ -404,65 +430,63 @@ const Index = () => {
           </Col>
           <Col style={{ minWidth: 800, maxWidth: 900 }}>
             <Spin spinning={changeLoading || loading}>
-              <Row>
-                <Col span={6}>
-                  <Input prefix="接口名：" value={data.title} />
-                </Col>
-                <Col span={4}>
-                  <Input prefix="method：" value={data.method} onChange={e => change(e, "method")} />
-                </Col>
-                <Col span={14}>
-                  <Input prefix="url：" value={data.url} onChange={e => change(e, "url")} />
-                </Col>
-              </Row>
-              <div>
-                <Collapse>
-                  <Panel header="headers" key="1">
-                    <CodeMirror
-                      value={data["headers"]}
-                      options={options}
-                      onBlur={(instance) => CodeMirrorBlur(instance, "headers")}
-                    />
-                  </Panel>
-                </Collapse>
+              <div style={{ marginBottom: 4 }}>
+                <Input.Group compact>
+                  <Input style={{ width: "25%" }} prefix="接口名：" value={data.title}/>
+                  <Input style={{ width: "20%" }} prefix="method：" value={data.method}
+                         onChange={e => change(e, "method")}/>
+                  <Input style={{ width: "calc(55% + 2px)" }} prefix="url：" value={data.url}
+                         onChange={e => change(e, "url")}/>
+                </Input.Group>
+              </div>
+              <div className="code">
+                <CodeMirror
+                  value={data["headers"]}
+                  options={options}
+                  onBlur={(instance) => CodeMirrorBlur(instance, "headers")}
+                />
               </div>
               <div>
-                <Collapse>
-                  <Panel header="参数说明" key="1">
-                    <CodeMirror
-                      value={data["note"]}
-                      options={options}
-                      onBlur={(instance) => CodeMirrorBlur(instance, "headers")}
-                    />
-                  </Panel>
-                </Collapse>
+                <Tabs onChange={(e) => setP1(() => e === "1")} className="tabs">
+                  <TabPane tab={<span>&emsp;入参&emsp;</span>} key="1"/>
+                  <TabPane tab="参数说明" key="2"/>
+                </Tabs>
               </div>
-              <div>
-                <div style={{ padding: 16, border: "1px solid #d9d9d9" }}>
+              <div className="code">
+                <div style={p1 ? null : hideStyle}>
                   <CodeMirror
                     value={data["data"]}
                     options={options}
                     onBlur={(instance) => CodeMirrorBlur(instance, "data")}
                   />
                 </div>
+                <div style={!p1 ? null : hideStyle}>
+                  <CodeMirror
+                    value={data["note"]}
+                    options={options}
+                    onBlur={(instance) => CodeMirrorBlur(instance, "note")}
+                  />
+                </div>
               </div>
               <div>
-                <Collapse>
-                  <Panel header="返回值说明" key="1">
-                    <CodeMirror
-                      value={data["returnNote"]}
-                      options={options}
-                      onBlur={(instance) => CodeMirrorBlur(instance, "headers")}
-                    />
-                  </Panel>
-                </Collapse>
+                <Tabs onChange={(e) => setP2(() => e === "1")} className="tabs">
+                  <TabPane tab={<span>&emsp;返回&emsp;</span>} key="1"/>
+                  <TabPane tab="返回说明" key="2"/>
+                </Tabs>
               </div>
-              <div>
-                <div style={{ padding: 16, border: "1px solid #d9d9d9" }}>
+              <div className="code">
+                <div style={p2 ? null : hideStyle}>
                   <CodeMirror
                     value={data["res"]}
                     options={options}
-                    onBlur={(instance) => CodeMirrorBlur(instance, "headers")}
+                    onBlur={(instance) => CodeMirrorBlur(instance, "res")}
+                  />
+                </div>
+                <div style={!p2 ? null : hideStyle}>
+                  <CodeMirror
+                    value={data["returnNote"]}
+                    options={options}
+                    onBlur={(instance) => CodeMirrorBlur(instance, "returnNote")}
                   />
                 </div>
               </div>
@@ -470,19 +494,20 @@ const Index = () => {
                 <Row gutter={4}>
                   <Col span={16}><Button type={"primary"} style={{ width: "100%" }}
                                          onClick={() => setSend(sends => sends + 1)}
-                                         loading={loading}>请求一下（Enter）~</Button></Col>
-                  <Col span={4}><Button style={{ width: "100%" }} onClick={send} loading={loading}>重置</Button></Col>
-                  <Col span={4}><Button style={{ width: "100%" }} onClick={send}
-                                        loading={loading}>生成接口JSON</Button></Col>
+                                         loading={loading}>请求一下（⌘ + Enter）~</Button></Col>
+                  <Col span={4}><Button style={{ width: "100%" }} onClick={reSet}>重置（Alt + R）</Button></Col>
+                  <Col span={4}><Button style={{ width: "100%" }} onClick={createIo}>生成接口JSON</Button></Col>
                 </Row>
               </div>
               <div>
                 <Collapse>
                   <Panel header="返回的所有信息" key="1">
-                    <CodeMirror
-                      value={data["more"]}
-                      options={options}
-                    />
+                    <div className="code">
+                      <CodeMirror
+                        value={data["more"]}
+                        options={options}
+                      />
+                    </div>
                   </Panel>
                 </Collapse>
               </div>

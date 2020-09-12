@@ -229,6 +229,9 @@
 
 
     </style>
+    <script>
+      window.apiTreeData = [{"title":"外呼","key":"0-1","selectable":false,"children":[{"key":"0-1-0","isLeaf":true,"title":"坐席列表","url":"/tapi/teacherLeave/statistics","method":"post","data":{"teacher_id":410,"ctime":{"gte":0,"lte":1908242726},"leave_date":{"gte":"2019-06-24T16:00:00.000Z","lte":"2019-06-24T16:00:00.000Z"}},"headers":{"authorization":"a"},"note":{"teacher_id":"老师ID","ctime":{"gte":"申请开始时间","lte":"申请结束时间"},"leave_date":{"gte":"上课开始时间","lte":"上课结束时间"}},"returnNote":{"leave":"总数","affectLeave":"课时"}},{"key":"0-1-1","isLeaf":true,"title":"坐席统计","url":"/tapi/teacherLeave/statistics","method":"post","data":{"teacher_id":410,"ctime":{"gte":0,"lte":1908242726},"leave_date":{"gte":"2019-06-24T16:00:00.000Z","lte":"2019-06-24T16:00:00.000Z"}},"headers":{"authorization":"a"},"note":{"teacher_id":"老师ID","ctime":{"gte":"申请开始时间","lte":"申请结束时间"},"leave_date":{"gte":"上课开始时间","lte":"上课结束时间"}},"returnNote":{"leave":"总数","affectLeave":"课时"}}]}]
+    </script>
   </head>
   <body>
     <div id="root"></div>
