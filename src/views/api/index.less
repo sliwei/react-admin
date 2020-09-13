@@ -19,3 +19,39 @@
     font-family: 'Menlo-Regular', 'source-code-pro', Menlo, 'Courier New', Consolas, monospace;
   }
 }
+.code_small {
+  div[class*='CodeMirror'] {
+    font-size: 12px!important;
+  }
+}
+.code_medium {
+  div[class*='CodeMirror'] {
+    font-size: 16px!important;
+  }
+}
+.code_large {
+  div[class*='CodeMirror'] {
+    font-size: 18px!important;
+  }
+}
+.tree_head {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  background-color: #fafafa;
+  border: 1px solid #d9d9d9;
+  padding: 0 10px;
+  justify-content: space-between;
+
+}
+
+.tree_set {
+  display: block;
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  &:hover {
+    color: #fa541c;
+  }
+}

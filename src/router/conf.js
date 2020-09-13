@@ -10,7 +10,21 @@ import {
 } from "@ant-design/icons"
 import React from "react"
 
-export default [
+/**
+ * 路由配置
+ */
+export const layout = [
+  {
+    path: "/login",
+    component: "views/common/login",
+  },
+  {
+    path: "/",
+    component: "components/Layout",
+  },
+]
+
+export const complexMenu = [
   {
     path: "/",
     name: "工作台",

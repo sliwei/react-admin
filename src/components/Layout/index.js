@@ -16,7 +16,7 @@ import {
   Descriptions
 } from "antd"
 import ProLayout, { PageContainer, DefaultFooter } from "@ant-design/pro-layout"
-import complexMenu from "./complexMenu"
+import {complexMenu} from "@/router/conf"
 import {
   UserOutlined,
   BellOutlined,
@@ -79,13 +79,12 @@ const content = (
   </Descriptions>
 )
 const App = props => {
-  console.log(props)
 
   const [pathname, setPathname] = useState(props.location.pathname)
   const [bread, setBread] = useState([])
 
   const callback = e => {
-    console.log(e)
+    // console.log(e)
   }
 
   return (
@@ -99,7 +98,7 @@ const App = props => {
 
         <ProLayout
           logo={<img width={32} src={Logo} alt=""/>}
-          title="Halo Admin"
+          title="Halo Sys"
           location={{
             pathname
           }}
@@ -107,14 +106,14 @@ const App = props => {
             routes: []
           }}
           breadcrumbRender={route => {
-            console.log(route)
+            // console.log(route)
             // route
             // setBread([{}])
           }}
           menuDataRender={e => e}
           menuItemRender={(menuItemProps, defaultDom) => <Link to={menuItemProps.path}>{defaultDom}</Link>}
           onPageChange={(e) => {
-            console.log(e)
+            // console.log(e)
           }}
           settings={{
             theme: "dark"
@@ -251,7 +250,7 @@ const App = props => {
               routes: complexMenu
             }}
             breadcrumbRender={route => {
-              console.log(route)
+              // console.log(route)
               if (JSON.stringify(route) !== JSON.stringify(bread)) {
                 setBread(route)
               }
@@ -297,7 +296,7 @@ const App = props => {
                   margin: "10px 0"
                 }}
                 links={null}
-                copyright="Halo Admin"
+                copyright="Halo Sys"
               />
             )}
           >

@@ -1,7 +1,7 @@
 import React from "react";
 import loadable from '@loadable/component'
 import {Route, Redirect, HashRouter, Switch} from 'react-router-dom'
-import routes from './rootRouterConfig'
+import {layout as routes} from './conf'
 
 /**
  * 跟路由

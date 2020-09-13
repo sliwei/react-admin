@@ -37,7 +37,7 @@
       }
 
       .indexLoadingLoaderTxt1 {
-        color: #189d6e;
+        color: #fa541c;
         font-size: 16px;
       }
 
@@ -50,12 +50,12 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        margin-left: -10px;
-        margin-top: -10px;
-        height: 20px;
-        width: 20px;
-        -webkit-animation: spin 1.5s linear infinite;
-        -moz-animation: spin 1.5s linear infinite;
+        margin-left: -25px;
+        margin-top: -25px;
+        height: 50px;
+        width: 50px;
+        -webkit-animation: spin 2s linear infinite;
+        -moz-animation: spin 2s linear infinite;
       }
 
       .indexLoadingLoader i {
@@ -230,15 +230,44 @@
 
     </style>
     <script>
-      window.apiTreeData = [{"title":"外呼","key":"0-1","selectable":false,"children":[{"key":"0-1-0","isLeaf":true,"title":"坐席列表","url":"/tapi/teacherLeave/statistics","method":"post","data":{"teacher_id":410,"ctime":{"gte":0,"lte":1908242726},"leave_date":{"gte":"2019-06-24T16:00:00.000Z","lte":"2019-06-24T16:00:00.000Z"}},"headers":{"authorization":"a"},"note":{"teacher_id":"老师ID","ctime":{"gte":"申请开始时间","lte":"申请结束时间"},"leave_date":{"gte":"上课开始时间","lte":"上课结束时间"}},"returnNote":{"leave":"总数","affectLeave":"课时"}},{"key":"0-1-1","isLeaf":true,"title":"坐席统计","url":"/tapi/teacherLeave/statistics","method":"post","data":{"teacher_id":410,"ctime":{"gte":0,"lte":1908242726},"leave_date":{"gte":"2019-06-24T16:00:00.000Z","lte":"2019-06-24T16:00:00.000Z"}},"headers":{"authorization":"a"},"note":{"teacher_id":"老师ID","ctime":{"gte":"申请开始时间","lte":"申请结束时间"},"leave_date":{"gte":"上课开始时间","lte":"上课结束时间"}},"returnNote":{"leave":"总数","affectLeave":"课时"}}]}]
+      window.apiData = {}
     </script>
   </head>
   <body>
     <div id="root"></div>
     <div class="indexLoading">
+<!--      <div class="indexLoadingLoader">-->
+<!--        <i></i>-->
+<!--        <i></i>-->
+<!--      </div>-->
       <div class="indexLoadingLoader">
-        <i></i>
-        <i></i>
+        <svg version="1.1" id="图层_1" x="0px" y="0px" viewBox="0 0 500 500" enable-background="new 0 0 500 500"
+             xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             xmlns:xml="http://www.w3.org/XML/1998/namespace"
+             style=""><defs class="defs"><linearGradient id="linearGradient_2_c1" class="linearGradient1" gradientTransform="translate(0.5,0.5) rotate(0) translate(-0.5,-0.5)" x1="50%" y1="0%" x2="50%" y2="100%"><stop id="stop1" offset="0%" class="linearGradientColor1" stop-color="#fc2b00"></stop><stop
+          id="stop2" offset="100%" class="linearGradientColor2" stop-color="#ffab00"></stop></linearGradient><linearGradient
+          id="linearGradient_2_c2" class="linearGradient2"
+          gradientTransform="translate(0.5,0.5) rotate(270) translate(-0.5,-0.5)" x1="50%" y1="0%" x2="50%" y2="100%"><stop id="stop1" offset="0%" class="linearGradientColor1" stop-color="#fc2b00"></stop>
+          <stop id="stop2" offset="100%" class="linearGradientColor2" stop-color="#ffab00"></stop></linearGradient><linearGradient
+          id="linearGradient_2_c3" class="linearGradient3"
+          gradientTransform="translate(0.5,0.5) rotate(90) translate(-0.5,-0.5)" x1="50%" y1="0%" x2="50%" y2="100%"><stop id="stop1" offset="0%" class="linearGradientColor1" stop-color="#fc2b00"></stop>
+          <stop id="stop2" offset="100%" class="linearGradientColor2" stop-color="#ffab00"></stop></linearGradient><linearGradient
+          id="linearGradient_2_c4" class="linearGradient4"
+          gradientTransform="translate(0.5,0.5) rotate(0) translate(-0.5,-0.5)" x1="50%" y1="0%" x2="50%" y2="100%"><stop id="stop1" offset="0%" class="linearGradientColor1" stop-color="#fc2b00"></stop>
+          <stop id="stop2" offset="100%" class="linearGradientColor2" stop-color="#ffab00"></stop></linearGradient></defs>
+          <path fill="url(#linearGradient_2_c1)" d="M488.994,223.612L311.906,46.523c-2.001-0.25-4.002-0.5-6.254-0.5c-20.76,0-53.025,37.519-53.025,37.519
+	l-5.003,5.002l162.081,162.081c0,0,37.519,32.517,37.519,53.027c0,10.004-4.002,19.26-10.505,26.013l52.526-52.526
+	c7.253-7.254,11.005-17.009,11.005-26.764C500,240.62,496.498,231.116,488.994,223.612z" class="color c1"></path>
+          <path fill="url(#linearGradient_2_c2)" d="M276.639,11.506C269.385,4.002,259.63,0.5,249.875,0.5s-19.26,3.502-26.764,11.006L49.775,184.842
+	c-1.25,3.752-1.751,7.504-1.751,11.506c0,20.76,37.519,53.026,37.519,53.026l3.001,3.001L250.125,90.795
+	c0,0,32.516-37.519,53.026-37.519c10.005,0,19.26,4.002,26.014,10.505L276.639,11.506z" class="color c2"></path>
+          <path fill="url(#linearGradient_2_c3)" d="M196.849,454.228c20.76,0,53.026-37.519,53.026-37.519l3.752-3.752L90.295,249.625
+	c0,0-37.519-32.517-37.519-53.027c0-10.005,4.002-19.259,10.505-26.013l-52.526,52.526C3.502,230.365,0,239.87,0,249.625
+	s3.502,19.26,11.005,26.764l176.588,176.588C190.595,453.727,193.597,454.228,196.849,454.228z"
+                class="color c3"></path>
+          <path fill="url(#linearGradient_2_c4)" d="M447.224,303.652c0-20.761-37.519-53.027-37.519-53.027l-0.5-0.5l-159.08,159.08
+	c0,0-32.516,37.519-53.026,37.519c-10.005,0-19.26-4.002-26.013-10.506l52.526,52.526c7.253,7.254,17.008,11.006,26.763,11.006
+	s19.26-3.502,26.764-11.006l163.332-163.332C444.473,319.16,447.224,311.656,447.224,303.652z" class="color c4"></path></svg>
       </div>
       <div class="indexLoadingLoaderTxt">
         <div class="indexLoadingLoaderTxt1">加载中</div>

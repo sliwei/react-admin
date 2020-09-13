@@ -1,10 +1,10 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import RouterGuard from "./routerGuard"
+import RouterGuard from "./guard"
 import { CSSTransition } from "react-transition-group"
 import "../assets/css/router.global.css"
 // import routes from "./appRouterConfig"
-import routesList from "@/components/Layout/complexMenu"
+import { complexMenu as routesList } from "./conf"
 import loadable from "@loadable/component"
 
 const routes = []
@@ -40,8 +40,8 @@ export default () => {
               unmountOnExit
             >
               <div className="router-transition">
-                <AsyncPage {...props} component={component}/>
-                {/*<RouterGuard component={component} path={path} {...props}/>*/}
+                {/*<AsyncPage {...props} component={component}/>*/}
+                <RouterGuard component={component} path={path} {...props}/>
               </div>
             </CSSTransition>
           )}

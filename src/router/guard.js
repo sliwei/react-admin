@@ -12,7 +12,7 @@ import loadable from "@loadable/component"
 export default props => {
   const { component, path } = props
   const AsyncPage = loadable(props => import(`../${props.component}`))
-  console.log("router", path)
+  // console.log("router", path)
 
   NProgress.start()
   useEffect(() => {
